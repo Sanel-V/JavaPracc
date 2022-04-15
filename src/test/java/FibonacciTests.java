@@ -10,93 +10,93 @@ import static hu.elte.t8hxgr.Fibonacci.*;
 public class FibonacciTests
 {
     @Test
-    public void TestFiboRecursiveZero()
+    public void testFiboRecursiveZero()
     {
-        int result = FiboRecursive(0);
+        int result = fiboRecursive(0);
 
         assertEquals(0, result);
     }
 
     @Test
-    public void TestFiboRecursiveOne()
+    public void testFiboRecursiveOne()
     {
-        int result = FiboRecursive(1);
+        int result = fiboRecursive(1);
 
         assertEquals(1, result);
     }
     @Test
-    public void TestFiboRecursiveNegative()
+    public void testFiboRecursiveNegative()
     {
-        assertThrows(IllegalArgumentException.class , () -> FiboRecursive(-4));
+        assertThrows(IllegalArgumentException.class , () -> fiboRecursive(-4));
     }
 
     @Test
-    public void TestFiboRecursiveSix()
+    public void testFiboRecursiveSix()
     {
-        int result = FiboRecursive(6);
+        int result = fiboRecursive(6);
 
         assertEquals(8, result);
     }
 
     @Test
-    public void TestFiboIterativeZero()
+    public void testFiboIterativeZero()
     {
-        int result = FiboIterative(0);
+        int result = fiboIterative(0);
 
         assertEquals(0, result);
     }
 
     @Test
-    public void TestFiboIterativeOne()
+    public void testFiboIterativeOne()
     {
-        int result = FiboIterative(1);
+        int result = fiboIterative(1);
 
         assertEquals(1, result);
     }
     @Test
-    public void TestFiboIterativeNegative()
+    public void testFiboIterativeNegative()
     {
-        assertThrows(IllegalArgumentException.class , () -> FiboIterative(-4));
+        assertThrows(IllegalArgumentException.class , () -> fiboIterative(-4));
     }
 
     @Test
-    public void TestFiboIterativeSix()
+    public void testFiboIterativeSix()
     {
-        int result = FiboIterative(6);
+        int result = fiboIterative(6);
 
         assertEquals(8, result);
     }
 
     @ParameterizedTest(name = "f({0}) = {1}")
     @CsvSource(value = {"0, 0", "1, 1", "2, 1", "6, 8", "7, 13", "23, 28657"})
-    public void TestFiboRecursiveInBulk(int n, int expected)
+    public void testFiboRecursiveInBulk(int n, int expected)
     {
-        assertEquals(expected, FiboRecursive(n));
+        assertEquals(expected, fiboRecursive(n));
     }
 
     @ParameterizedTest(name = "f({0}) = {1}")
     @CsvSource(value = {"0, 0", "1, 1", "2, 1", "6, 8", "7, 13", "23, 28657"})
-    public void TestFiboIterativeInBulk(int n, int expected)
+    public void testFiboIterativeInBulk(int n, int expected)
     {
-        assertEquals(expected, FiboIterative(n));
+        assertEquals(expected, fiboIterative(n));
     }
 
     @ParameterizedTest(name = "f({0}) = {1}")
     @CsvSource(value = {"0, 0", "1, 1", "2, 1", "6, 8", "7, 13", "23, 28657"})
-    public void TestBothFiboInBulk(int n, int expected)
+    public void testBothFiboInBulk(int n, int expected)
     {
         assertAll
         (
-            () -> assertEquals(expected, FiboIterative(n)),
-            () -> assertEquals(expected, FiboRecursive(n))
+            () -> assertEquals(expected, fiboIterative(n)),
+            () -> assertEquals(expected, fiboRecursive(n))
         );
 
     }
 
     @ParameterizedTest
     @ValueSource(ints = { 5, 6, 7, 8, 12 })
-    public void CompareRecursiveAndIterativeResults(int n)
+    public void compareRecursiveAndIterativeResults(int n)
     {
-        assertEquals(FiboIterative(n), FiboRecursive(n));
+        assertEquals(fiboIterative(n), fiboRecursive(n));
     }
 }

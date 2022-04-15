@@ -1,7 +1,5 @@
 package hu.elte.t8hxgr;
 
-import jdk.jfr.StackTrace;
-
 public class Fibonacci
 {
     /*
@@ -10,7 +8,7 @@ public class Fibonacci
     f(0) = 0
 
      */
-    public static int FiboRecursive(int n)
+    public static int fiboRecursive(int n)
     {
         if(n < 0)
         {
@@ -20,9 +18,9 @@ public class Fibonacci
         {
             return n;
         }
-        return FiboRecursive(n - 1) + FiboRecursive(n - 2);
+        return fiboRecursive(n - 1) + fiboRecursive(n - 2);
     }
-    public static int FiboIterative(int n)
+    public static int fiboIterative(int n)
     {
         if(n < 0)
         {
