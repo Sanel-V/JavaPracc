@@ -1,4 +1,4 @@
-package hu.elte.t8hxgr;
+package hu.elte.t8hgxr;
 
 public class Point
 {

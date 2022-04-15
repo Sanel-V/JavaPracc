@@ -2,14 +2,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
-import hu.elte.t8hxgr.Point;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import hu.elte.t8hgxr.Point;
 
 public class PointTests
 {

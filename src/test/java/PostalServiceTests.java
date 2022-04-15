@@ -1,6 +1,6 @@
-import hu.elte.t8hxgr.post.Mail;
-import hu.elte.t8hxgr.post.PostAccount;
-import hu.elte.t8hxgr.post.PostOffice;
+import hu.elte.t8hgxr.post.Mail;
+import hu.elte.t8hgxr.post.PostAccount;
+import hu.elte.t8hgxr.post.PostOffice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

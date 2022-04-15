@@ -4,7 +4,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static hu.elte.t8hxgr.Fibonacci.*;
+import static hu.elte.t8hgxr.Fibonacci.*;
 
 
 public class FibonacciTests

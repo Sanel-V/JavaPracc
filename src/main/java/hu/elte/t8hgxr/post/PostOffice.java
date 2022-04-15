@@ -1,4 +1,4 @@
-package hu.elte.t8hxgr.post;
+package hu.elte.t8hgxr.post;
 
 public class PostOffice
 {
