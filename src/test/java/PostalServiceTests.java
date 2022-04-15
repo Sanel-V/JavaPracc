@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 
@@ -123,6 +124,33 @@ public class PostalServiceTests
             assertEquals(0, even % 2);
             Mockito.verify(office.accountOne).receive(mail);
         }
+        @ParameterizedTest
+        @CsvSource(value = {"2, 1, 3", "6, 43, 23"})
+        public void testPostOfficeSortOneEvenTwoOdd(int even, int odd1, int odd2)
+        {
+            //GIVEN
+            Mail mail = new Mail(even);
+            Mail mailOdd1 = new Mail(odd1);
+            Mail mailOdd2 = new Mail(odd2);
 
+            //WHEN
+            office.sort(mailOdd1);
+            office.sort(mail);
+            office.sort(mailOdd2);
+
+            //Sanity check
+            //I should probably do these sanity checks after GIVEN, before WHEN
+            assertAll(
+                    () -> assertEquals(0, even % 2),
+                    () -> assertEquals(1, odd1 % 2),
+                    () -> assertEquals(1, odd2 % 2)
+            );
+            //THEN
+            Mockito.verify(office.accountOne).receive(mail);
+            Mockito.verify(office.accountTwo).receive(mailOdd1);
+            Mockito.verify(office.accountTwo).receive(mailOdd2);
+
+
+        }
     }
 }
