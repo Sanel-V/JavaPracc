@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,7 +114,7 @@ public class PostalServiceTests
             office = new PostOffice(mockedAccountOne, mockedAccountTwo);
         }
 
-        @ParameterizedTest
+        @ParameterizedTest(name = "Value address {0}")
         @ValueSource(ints = {0, 2, 4, 8})
         public void testPostOfficeSortEven(int even)
         {
@@ -124,7 +125,7 @@ public class PostalServiceTests
             assertEquals(0, even % 2);
             Mockito.verify(office.accountOne).receive(mail);
         }
-        @ParameterizedTest
+        @ParameterizedTest(name = "One even ({0}), two odd ({1})")
         @CsvSource(value = {"2, 1, 3", "6, 43, 23"})
         public void testPostOfficeSortOneEvenTwoOdd(int even, int odd1, int odd2)
         {
@@ -132,6 +133,7 @@ public class PostalServiceTests
             Mail mail = new Mail(even);
             Mail mailOdd1 = new Mail(odd1);
             Mail mailOdd2 = new Mail(odd2);
+            InOrder order = Mockito.inOrder(mockedAccountTwo, mockedAccountOne);
 
             //WHEN
             office.sort(mailOdd1);
@@ -146,10 +148,9 @@ public class PostalServiceTests
                     () -> assertEquals(1, odd2 % 2)
             );
             //THEN
-            Mockito.verify(office.accountOne).receive(mail);
-            Mockito.verify(office.accountTwo).receive(mailOdd1);
-            Mockito.verify(office.accountTwo).receive(mailOdd2);
-
+            order.verify(mockedAccountTwo).receive(mailOdd1);
+            order.verify(mockedAccountOne).receive(mail);
+            order.verify(office.accountTwo).receive(mailOdd2);
 
         }
     }
