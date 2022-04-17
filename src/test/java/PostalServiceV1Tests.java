@@ -12,9 +12,9 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PostalServiceTests
+public class PostalServiceV1Tests
 {
-    public PostalServiceTests(){}
+    public PostalServiceV1Tests(){}
 
     @Test
     public void testMailNegativeAddressShouldThrowIllegalArgumentException()

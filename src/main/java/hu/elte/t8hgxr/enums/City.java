@@ -1,5 +1,7 @@
 package hu.elte.t8hgxr.enums;
 
+import java.util.Arrays;
+
 public enum City
 {
     BUDAPEST(1),
@@ -8,7 +10,7 @@ public enum City
     TOKYO(4),
     PARIS(TOKYO);
 
-    final int address;
+    public final int address;
 
     City(int address)
     {
@@ -20,6 +22,18 @@ public enum City
         this(other.address);
     }
 
+    public static City get(int address)
+    {
+        return Arrays.stream(values())
+            .filter(city -> city.address == address)
+            //This will never return PARIS
+            .findFirst()
+            .orElseThrow(() ->
+            {
+                throw new EnumConstantNotPresentException(
+                    City.class, "No city with address: " + address);
+            });
+    }
 
     @Override
     public String toString()
